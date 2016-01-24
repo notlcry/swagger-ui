@@ -154,11 +154,19 @@ gulp.task('connect', function() {
   });
 });
 
+gulp.task('webserver', function() {
+    connect.server({
+        root: 'dist',
+        livereload: true,
+        port: 7070
+    });
+});
+
 function log(error) {
   console.error(error.toString && error.toString());
 }
 
-gulp.task('default', ['dist', 'copy']);
+gulp.task('default', ['dist', 'copy', 'webserver']);
 gulp.task('serve', ['connect', 'watch']);
 gulp.task('dev', ['default'], function () {
   gulp.start('serve');
